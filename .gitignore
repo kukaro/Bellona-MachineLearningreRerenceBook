@@ -1,2 +1,8 @@
+#ide
 .idea
+
+#tensorboard
 mygraph
+
+#all pycache
+*/__pycache__
