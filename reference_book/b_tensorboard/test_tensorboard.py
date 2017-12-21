@@ -5,6 +5,6 @@ def run():
     b = tf.constant(3, name='input_b')
     c = tf.multiply(a, b, name='mul_c')
     d = tf.add(a, b, name='add_d')
-    e = tf.add(c, d, name='add_e')
+    e = tf.truediv(c, d, name='add_e')
     sess = tf.Session()
     print(sess.run(e))
