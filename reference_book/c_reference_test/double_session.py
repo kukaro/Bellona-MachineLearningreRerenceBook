@@ -16,7 +16,6 @@ def run():
     print(sess1.run(a.assign_add(5)))
     print(sess2.run(a.assign_add(7)))
 
-
     '''
     변수 별로 관리되는게 아니라 세션별로 관리된다.
     '''

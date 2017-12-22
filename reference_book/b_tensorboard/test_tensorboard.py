@@ -9,4 +9,4 @@ def run():
     e = tf.truediv(c, d, name='add_e')
     sess = tf.Session()
     print(sess.run(e))
-    wirter = tf.summary.FileWriter('./mygraph', sess.graph)
+    writer = tf.summary.FileWriter('./mygraph', sess.graph)
