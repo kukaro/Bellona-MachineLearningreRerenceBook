@@ -59,3 +59,8 @@ with tf.Session() as sess:
     coord.request_stop()
     coord.join(threads)
     sess.close()
+
+'''
+https://tensorflow.blog/%EA%B2%BD%EC%82%AC%ED%95%98%EA%B0%95%EB%B2%95-tf-gradients/
+참고 사이트
+'''
