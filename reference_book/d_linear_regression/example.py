@@ -63,4 +63,6 @@ with tf.Session() as sess:
 '''
 https://tensorflow.blog/%EA%B2%BD%EC%82%AC%ED%95%98%EA%B0%95%EB%B2%95-tf-gradients/
 참고 사이트
+
+선형회귀(기울기 하강)는 제곱에러(squared error:L2)를 사용하여 손실함수를 만든다.
 '''
