@@ -67,7 +67,7 @@ with tf.Session() as sess:
     plt.plot(weight, ypp, 'bo')
     plt.show()
     #and addition code
-    
+
     coord.request_stop()
     coord.join(threads)
     sess.close()
