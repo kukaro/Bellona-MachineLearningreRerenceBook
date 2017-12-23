@@ -58,12 +58,16 @@ with tf.Session() as sess:
             print("loss: ", sess.run(total_loss))
     wp, bp = sess.run([W, b])
     evaluate(sess, X, Y)
+
+    #start addition code
     weight_age_f = [[float(weight_age[x][0]), float(weight_age[x][1])] for x in range(25)]
     yp = [sess.run(inference([weight_age_f[x]])) for x in range(25)]
     ypp = [yp[x][0][0] for x in range(25)]
     print(ypp)
     plt.plot(weight, ypp, 'bo')
     plt.show()
+    #and addition code
+    
     coord.request_stop()
     coord.join(threads)
     sess.close()
