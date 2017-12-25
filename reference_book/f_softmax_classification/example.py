@@ -32,10 +32,18 @@ def inputs():
     sepal_length, sepal_width, petal_length, petal_width, label = \
         read_csv(100, 'iris.data', [[0.0], [0.0], [0.0], [0.0], ['']])
 
+    '''
+    arg_max함수란
+    
+    '''
     label_number = tf.to_int32(tf.arg_max(tf.to_int32(tf.stack(
         [tf.equal(label, ['Iris-setosa']), tf.equal(label, ['Iris-versicolor']), tf.equal(label, ['Iris-virginica'])])),
         0))
 
+    '''
+    transpose함수란
+    
+    '''
     features = tf.transpose(tf.stack([sepal_length, sepal_width, petal_length, petal_width]))
     return features, label_number
 
