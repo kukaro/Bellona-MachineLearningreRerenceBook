@@ -7,6 +7,7 @@ import reference_book.c_reference_test.double_session as c2
 import reference_book.d_linear_regression.example as d1
 import reference_book.e_logistic_regression.example as e1
 import reference_book.e_logistic_regression.example_insert as e2
+import reference_book.f_softmax_classification.example as f1
 
 if '__main__':
-    e2.run()
+    f1.run()
