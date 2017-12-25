@@ -38,39 +38,39 @@ def evaluate(sess, X, Y):
     print(sess.run(inference([[89., 25.]])))
     print(sess.run(inference([[65., 25.]])))
 
+def run():
+    with tf.Session() as sess:
+        tf.initialize_all_variables().run()
+        X, Y, weight_age, blood_fat_content = inputs()
+        total_loss = loss(X, Y)
+        train_op = train(total_loss)
+        coord = tf.train.Coordinator()
 
-with tf.Session() as sess:
-    tf.initialize_all_variables().run()
-    X, Y, weight_age, blood_fat_content = inputs()
-    total_loss = loss(X, Y)
-    train_op = train(total_loss)
-    coord = tf.train.Coordinator()
+        threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+        training_steps = 1000
+        weight = [weight_age[x][0] for x in range(25)]
+        plt.plot(weight, blood_fat_content, 'ro')
 
-    threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-    training_steps = 1000
-    weight = [weight_age[x][0] for x in range(25)]
-    plt.plot(weight, blood_fat_content, 'ro')
+        for step in range(training_steps):
+            sess.run([train_op])
 
-    for step in range(training_steps):
-        sess.run([train_op])
+            if step % 10 == 0:
+                print("loss: ", sess.run(total_loss))
+        wp, bp = sess.run([W, b])
+        evaluate(sess, X, Y)
 
-        if step % 10 == 0:
-            print("loss: ", sess.run(total_loss))
-    wp, bp = sess.run([W, b])
-    evaluate(sess, X, Y)
+        #start addition code
+        weight_age_f = [[float(weight_age[x][0]), float(weight_age[x][1])] for x in range(25)]
+        yp = [sess.run(inference([weight_age_f[x]])) for x in range(25)]
+        ypp = [yp[x][0][0] for x in range(25)]
+        print(ypp)
+        plt.plot(weight, ypp, 'bo')
+        plt.show()
+        #and addition code
 
-    #start addition code
-    weight_age_f = [[float(weight_age[x][0]), float(weight_age[x][1])] for x in range(25)]
-    yp = [sess.run(inference([weight_age_f[x]])) for x in range(25)]
-    ypp = [yp[x][0][0] for x in range(25)]
-    print(ypp)
-    plt.plot(weight, ypp, 'bo')
-    plt.show()
-    #and addition code
-
-    coord.request_stop()
-    coord.join(threads)
-    sess.close()
+        coord.request_stop()
+        coord.join(threads)
+        sess.close()
 
 '''
 https://tensorflow.blog/%EA%B2%BD%EC%82%AC%ED%95%98%EA%B0%95%EB%B2%95-tf-gradients/

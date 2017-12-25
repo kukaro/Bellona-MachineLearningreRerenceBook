@@ -61,24 +61,25 @@ def evaluate(sess, X, Y):
     print(sess.run(tf.reduce_mean(tf.cast(tf.equal(predicted, Y), tf.float32))))
 
 
-with tf.Session() as sess:
-    tf.initialize_all_variables().run()
-    X, Y = inputs()
-    total_loss = loss(X, Y)
-    train_op = train(total_loss)
-    coord = tf.train.Coordinator()
+def run():
+    with tf.Session() as sess:
+        tf.initialize_all_variables().run()
+        X, Y = inputs()
+        total_loss = loss(X, Y)
+        train_op = train(total_loss)
+        coord = tf.train.Coordinator()
 
-    threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-    training_steps = 1000
+        threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+        training_steps = 1000
 
-    for step in range(training_steps):
-        sess.run([train_op])
+        for step in range(training_steps):
+            sess.run([train_op])
 
-        if step % 10 == 0:
-            print("loss: ", sess.run(total_loss))
-    wp, bp = sess.run([W, b])
-    evaluate(sess, X, Y)
+            if step % 10 == 0:
+                print("loss: ", sess.run(total_loss))
+        wp, bp = sess.run([W, b])
+        evaluate(sess, X, Y)
 
-    coord.request_stop()
-    coord.join(threads)
-    sess.close()
+        coord.request_stop()
+        coord.join(threads)
+        sess.close()

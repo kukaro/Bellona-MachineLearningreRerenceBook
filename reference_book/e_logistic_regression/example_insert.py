@@ -66,42 +66,45 @@ def test(sess, atom):
     print(sess.run(tf.cast(inference(atom) > 0.5, tf.float32)))
 
 
-with tf.Session() as sess:
-    tf.initialize_all_variables().run()
-    X, Y = inputs()
+def run():
+    with tf.Session() as sess:
+        tf.initialize_all_variables().run()
+        X, Y = inputs()
 
-    total_loss = loss(X, Y)
-    train_op = train(total_loss)
-    coord = tf.train.Coordinator()
-    threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-    training_steps = 1000
-    for step in range(training_steps):
-        sess.run([train_op])
+        total_loss = loss(X, Y)
+        train_op = train(total_loss)
+        coord = tf.train.Coordinator()
+        threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+        training_steps = 1000
+        for step in range(training_steps):
+            sess.run([train_op])
 
-        if step % 10 == 0:
-            print("loss: ", sess.run(total_loss))
-    wp, bp = sess.run([W, b])
-    # test case1 : 등급별 25세 남녀 생존율
-    test(sess, [[0.0, 0.0, 1.0, 0.0, 25.0]])
-    test(sess, [[0.0, 0.0, 1.0, 1.0, 25.0]])
-    test(sess, [[0.0, 0.0, 1.0, 0.0, 25.0]])
-    test(sess, [[0.0, 1.0, 0.0, 1.0, 25.0]])
-    test(sess, [[0.0, 1.0, 0.0, 0.0, 25.0]])
-    test(sess, [[1.0, 0.0, 0.0, 1.0, 25.0]])
-    test(sess, [[1.0, 0.0, 0.0, 1.0, 25.0]])
-    # end test1
+            if step % 10 == 0:
+                print("loss: ", sess.run(total_loss))
+        wp, bp = sess.run([W, b])
+        # test case1 : 등급별 25세 남녀 생존율
+        print('test case1 : 등급별 25세 남녀 생존율')
+        test(sess, [[0.0, 0.0, 1.0, 0.0, 25.0]])
+        test(sess, [[0.0, 0.0, 1.0, 1.0, 25.0]])
+        test(sess, [[0.0, 0.0, 1.0, 0.0, 25.0]])
+        test(sess, [[0.0, 1.0, 0.0, 1.0, 25.0]])
+        test(sess, [[0.0, 1.0, 0.0, 0.0, 25.0]])
+        test(sess, [[1.0, 0.0, 0.0, 1.0, 25.0]])
+        test(sess, [[1.0, 0.0, 0.0, 1.0, 25.0]])
+        # end test1
 
-    # test case2 : 등급별 70세 남녀 생존율
-    test(sess, [[0.0, 0.0, 1.0, 0.0, 70.0]])
-    test(sess, [[0.0, 0.0, 1.0, 1.0, 70.0]])
-    test(sess, [[0.0, 0.0, 1.0, 0.0, 70.0]])
-    test(sess, [[0.0, 1.0, 0.0, 1.0, 70.0]])
-    test(sess, [[0.0, 1.0, 0.0, 0.0, 70.0]])
-    test(sess, [[1.0, 0.0, 0.0, 1.0, 70.0]])
-    test(sess, [[1.0, 0.0, 0.0, 1.0, 70.0]])
-    # end test2
-    evaluate(sess, X, Y)
+        # test case2 : 등급별 70세 남녀 생존율
+        print('test case2 : 등급별 70세 남녀 생존율')
+        test(sess, [[0.0, 0.0, 1.0, 0.0, 70.0]])
+        test(sess, [[0.0, 0.0, 1.0, 1.0, 70.0]])
+        test(sess, [[0.0, 0.0, 1.0, 0.0, 70.0]])
+        test(sess, [[0.0, 1.0, 0.0, 1.0, 70.0]])
+        test(sess, [[0.0, 1.0, 0.0, 0.0, 70.0]])
+        test(sess, [[1.0, 0.0, 0.0, 1.0, 70.0]])
+        test(sess, [[1.0, 0.0, 0.0, 1.0, 70.0]])
+        # end test2
+        evaluate(sess, X, Y)
 
-    coord.request_stop()
-    coord.join(threads)
-    sess.close()
+        coord.request_stop()
+        coord.join(threads)
+        sess.close()
