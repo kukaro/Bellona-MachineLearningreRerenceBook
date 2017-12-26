@@ -25,6 +25,7 @@ def train(total_loss):
 def evaluate(sess, X, Y):
     # predicted : 예상되는
     predicted = tf.cast(tf.arg_max(inference(X), 1), tf.int32)
+    print(sess.run(tf.arg_max(inference(X), 1)))
     print(sess.run(tf.reduce_mean(tf.cast(tf.equal(predicted, Y), tf.float32))))
 
 
@@ -76,7 +77,10 @@ def run():
 
         threads = tf.train.start_queue_runners(sess=sess, coord=coord)
         training_steps = 1000
-        print(sess.run(X))
+        '''
+        check X value
+        '''
+        #print(sess.run(X))
         for step in range(training_steps):
             sess.run([train_op])
 

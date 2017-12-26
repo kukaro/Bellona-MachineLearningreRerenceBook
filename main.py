@@ -8,6 +8,7 @@ import reference_book.d_linear_regression.example as d1
 import reference_book.e_logistic_regression.example as e1
 import reference_book.e_logistic_regression.example_insert as e2
 import reference_book.f_softmax_classification.example as f1
+import reference_book.f_softmax_classification.example_insert as f2
 
 if '__main__':
-    f1.run()
+    f2.run()
