@@ -10,11 +10,11 @@ def combine_inputs(X):
 
 
 def inference(X):
-    '''
+    """
     각차원의 값이 얼마인지에 대한 해당 확률을 리턴함
     :param X:
     :return: 소프트맥스함수로 바인딩한 결과를 리턴
-    '''
+    """
     return tf.nn.softmax(combine_inputs(X))
 
 
