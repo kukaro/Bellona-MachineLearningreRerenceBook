@@ -10,6 +10,11 @@ def combine_inputs(X):
 
 
 def inference(X):
+    '''
+    각차원의 값이 얼마인지에 대한 해당 확률을 리턴함
+    :param X:
+    :return: 소프트맥스함수로 바인딩한 결과를 리턴
+    '''
     return tf.nn.softmax(combine_inputs(X))
 
 
@@ -25,8 +30,13 @@ def train(total_loss):
 def evaluate(sess, X, Y):
     # predicted : 예상되는
     predicted = tf.cast(tf.arg_max(inference(X), 1), tf.int32)
+    print(sess.run(inference(X)))
     print(sess.run(tf.arg_max(inference(X), 1)))
     print(sess.run(tf.reduce_mean(tf.cast(tf.equal(predicted, Y), tf.float32))))
+
+
+def test(sess, atom):
+    print(sess.run(tf.cast(tf.arg_max(inference(atom), 1), tf.int32)))
 
 
 def inputs():
@@ -38,7 +48,8 @@ def inputs():
 
     '''
     arg_max함수란
-    
+    그냥 max함수랑 같다고 생각하면 되는데 텐서안에서 가장 큰값을 리턴해준다.
+    두번째 파라메터는 입력텐서의 차원을 의미한다.
     '''
     label_number = tf.to_int32(tf.arg_max(tf.to_int32(tf.stack(
         [tf.equal(label, ['Iris-setosa']), tf.equal(label, ['Iris-versicolor']), tf.equal(label, ['Iris-virginica'])])),
@@ -80,7 +91,7 @@ def run():
         '''
         check X value
         '''
-        #print(sess.run(X))
+        # print(sess.run(X))
         for step in range(training_steps):
             sess.run([train_op])
 
@@ -88,6 +99,12 @@ def run():
                 print("loss: ", sess.run(total_loss))
         wp, bp = sess.run([W, b])
         evaluate(sess, X, Y)
+
+        # test case1 : 순서대로 0,1,2가 원래값
+        test(sess, [[5.1, 3.5, 1.4, 0.2]])
+        test(sess, [[7.0, 3.2, 4.7, 1.4]])
+        test(sess, [[6.3, 3.3, 6.0, 2.5]])
+        # end test1
 
         coord.request_stop()
         coord.join(threads)
