@@ -1,5 +1,13 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('TkAgg')
+'''
+http://dukwon.tistory.com/30
+백엔드 관련 이슈는 여기를 참조
+echo "backend: TkAgg" >> ~/.matplotlib/matplotlibrc
+'''
+
 
 graph = tf.get_default_graph()
 # saver = tf.train.Saver()
