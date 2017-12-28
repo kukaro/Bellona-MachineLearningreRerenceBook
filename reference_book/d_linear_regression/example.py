@@ -1,5 +1,6 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
+#add matplotlib for mac
 import matplotlib
 matplotlib.use('TkAgg')
 '''
