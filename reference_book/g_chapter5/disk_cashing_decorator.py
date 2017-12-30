@@ -52,6 +52,5 @@ def disk_cache(basename, directory, method=False):
 
         return wrapped
 
-
     return wrapper
 
