@@ -11,6 +11,7 @@ import reference_book.f_softmax_classification.example as f1
 import reference_book.f_softmax_classification.example_insert as f2
 import reference_book.h_cnn.image_batch as h1
 import reference_book.h_cnn.input_and_kernel as h2
+import reference_book.h_cnn.feature_map as h3
 
 if '__main__':
-    h2.run()
+    h3.run()
