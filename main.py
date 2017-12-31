@@ -9,6 +9,8 @@ import reference_book.e_logistic_regression.example as e1
 import reference_book.e_logistic_regression.example_insert as e2
 import reference_book.f_softmax_classification.example as f1
 import reference_book.f_softmax_classification.example_insert as f2
+import reference_book.h_cnn.image_batch as h1
+import reference_book.h_cnn.input_and_kernel as h2
 
 if '__main__':
-    f2.run()
+    h2.run()
