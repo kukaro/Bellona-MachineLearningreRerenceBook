@@ -28,3 +28,8 @@ def run():
     lower_right_kernel_pixel = sess.run(conv2d)[0][1][1]
     print(lower_right_image_pixel)
     print(lower_right_kernel_pixel)
+
+
+'''
+왜 커널이라 불리우는지 알아보자
+'''
