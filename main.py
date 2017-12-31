@@ -14,4 +14,4 @@ import reference_book.h_cnn.input_and_kernel as h2
 import reference_book.h_cnn.feature_map as h3
 
 if '__main__':
-    h3.run()
+    f1.run()
