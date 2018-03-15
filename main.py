@@ -12,6 +12,10 @@ import reference_book.f_softmax_classification.example_insert as f2
 import reference_book.h_cnn.image_batch as h1
 import reference_book.h_cnn.input_and_kernel as h2
 import reference_book.h_cnn.feature_map as h3
+import reference_book_scratch.a_perceptron.xor_gate as a1s
 
 if '__main__':
-    f1.run()
+    print(a1s.xor_gate(0, 0))
+    print(a1s.xor_gate(0, 1))
+    print(a1s.xor_gate(1, 0))
+    print(a1s.xor_gate(1, 1))
