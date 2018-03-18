@@ -7,3 +7,6 @@ mygraph
 #all pycache
 */__pycache__
 */*/__pycache__
+
+mnist.pkl
+*.gz
