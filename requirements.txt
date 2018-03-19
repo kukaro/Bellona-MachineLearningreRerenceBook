@@ -1,3 +1,5 @@
 tensorflow-gpu
 requests
 matplotlib
+pillow
+numpy
